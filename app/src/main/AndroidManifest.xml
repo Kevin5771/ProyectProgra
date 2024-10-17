@@ -13,6 +13,17 @@
         android:theme="@style/Theme.ProyectoProgra"
         tools:targetApi="31">
         <activity
+            android:name=".Citas.CreateAppoiment"
+            android:exported="false" />
+        <activity
+            android:name=".Chat.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Adopciones.AdopcionScreen"
+            android:exported="false"
+            android:label="@string/title_activity_adopcion_screen"
+            android:theme="@style/Theme.ProyectoProgra" />
+        <activity
             android:name=".Citas.Menu"
             android:exported="false" />
         <activity

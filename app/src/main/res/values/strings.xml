@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProyectoProgra</string>
+    <string name="title_activity_adopcion_screen">AdopcionScreen</string>
 </resources>
