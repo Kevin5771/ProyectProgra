@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
@@ -21,7 +22,9 @@ import java.time.Year
 import java.util.Calendar
 
 class CreateAppoiment : AppCompatActivity() {
-    val selectedCalendar = Calendar.getInstance()
+    private val selectedCalendar = Calendar.getInstance()
+    private var selectedRadioButton: RadioButton? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,10 +33,6 @@ class CreateAppoiment : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
-
-
-
         }
 
 
@@ -80,17 +79,34 @@ class CreateAppoiment : AppCompatActivity() {
     }
 
     private fun displayRadioButtons(){
-        val radioGroup = findViewById<RadioGroup>(R.id.radio_group)
-        radioGroup.clearCheck()
-        radioGroup.removeAllViews()
+        val radioGroupLeft = findViewById<LinearLayout>(R.id.radio_group_izq)
+        val radioGroupRight = findViewById<LinearLayout>(R.id.radio_group_der)
 
+        radioGroupLeft.removeAllViews()
+        radioGroupRight.removeAllViews()
+
+        selectedRadioButton = null
+
+
+        var goToLeft = true
 
         val hours = arrayOf(" 8:00 Am", " 8:30 AM", "9:00 AM", "9:30 AM", "10 AM")
         hours.forEach {
             val radioButton = RadioButton(this)
             radioButton.id = View.generateViewId()
             radioButton.text = it
-            radioGroup.addView(radioButton)
+
+            radioButton.setOnClickListener{View ->
+                selectedRadioButton?.isChecked = false
+                selectedRadioButton = View as RadioButton?
+                selectedRadioButton?.isChecked = true
+            }
+
+            if (goToLeft)
+                radioGroupLeft.addView(radioButton)
+            else
+                radioGroupRight.addView(radioButton)
+            goToLeft = !goToLeft
         }
 
     }
