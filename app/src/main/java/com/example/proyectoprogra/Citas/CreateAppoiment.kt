@@ -71,12 +71,26 @@ class CreateAppoiment : AppCompatActivity() {
         val dayOfMonth = selectedCalendar.get(Calendar.DAY_OF_MONTH)
         val listener = android.app.DatePickerDialog.OnDateSetListener{ datePicker, Y, M, D ->
             selectedCalendar.set(Y, M, D)
-            etSchedulDate.setText("$Y, $M, $D")
+            etSchedulDate.setText(resources.getString(R.string.date_format,
+                Y,
+                (M+1).twoDigits(),
+                D.twoDigits()))
             displayRadioButtons()
         }
 
-        DatePickerDialog(this, listener, year, month, dayOfMonth ).show()
+        val datePickerDialog = DatePickerDialog(this, listener, year, month, dayOfMonth )
+        val datePicker = datePickerDialog.datePicker
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_MONTH, 1)
+        datePicker.minDate = calendar.timeInMillis
+        calendar.add(Calendar.DAY_OF_MONTH, 29)
+        datePicker.maxDate = calendar.timeInMillis
+        datePickerDialog.show()
+
     }
+
+    private fun Int.twoDigits()
+        = if(this > 10) this.toString() else "0$this"
 
     private fun displayRadioButtons(){
         val radioGroupLeft = findViewById<LinearLayout>(R.id.radio_group_izq)
