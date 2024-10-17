@@ -43,7 +43,7 @@
                 android:drawableLeft="@drawable/ic_add_cita"
                 android:paddingLeft="65dp"
                 android:paddingRight="65dp"
-                android:text="Registrar Cita"
+                android:text="Reservar Cita"
                 />
 
             <Button
