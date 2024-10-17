@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.proyectoprogra.Chat.LoginChat
 import com.example.proyectoprogra.Citas.LoginScr
 
 class MainActivity : ComponentActivity() {
@@ -21,13 +22,17 @@ class MainActivity : ComponentActivity() {
 
         // Configurar acciones para los botones
         buttonSchedule.setOnClickListener { navegarALogin() }
-        buttonChat.setOnClickListener { mostrarToast("Botón 2 presionado") }
+        buttonChat.setOnClickListener { navegarChat()}
         buttonAdoption.setOnClickListener { mostrarToast("Botón 3 presionado") }
     }
 
     // Función para navegar al Login
     private fun navegarALogin() {
         val intent = Intent(this, LoginScr::class.java)
+        startActivity(intent)
+    }
+    private fun navegarChat() {
+        val intent = Intent(this, LoginChat::class.java)
         startActivity(intent)
     }
 
