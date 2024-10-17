@@ -20,6 +20,5 @@ class CreateAppoiment : AppCompatActivity() {
 
         }
 
-        //hola bbs
     }
 }
