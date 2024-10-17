@@ -7,5 +7,7 @@
         <item name="colorSecondary">@color/color_gray_light</item>
     </style>
 
+
+
     <style name="Theme.ProyectoProgra" parent="Base.Theme.ProyectoProgra" />
 </resources>
