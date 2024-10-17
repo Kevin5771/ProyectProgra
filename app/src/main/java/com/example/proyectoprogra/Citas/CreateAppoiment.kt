@@ -1,18 +1,25 @@
 package com.example.proyectoprogra.Citas
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectoprogra.R
+import java.time.Year
+import java.util.Calendar
 
 class CreateAppoiment : AppCompatActivity() {
+    val selectedCalendar = Calendar.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -53,5 +60,19 @@ class CreateAppoiment : AppCompatActivity() {
 
         val optionsDoctor = arrayOf("Medico 1", "Medico 2", "Medico 3")
         spinnerDoctor.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, optionsDoctor)
+    }
+
+    fun onClickScheduleDate(v: View?){
+        val etSchedulDate = findViewById<EditText>(R.id.et_fecha)
+
+        val year = selectedCalendar.get(Calendar.YEAR)
+        val month = selectedCalendar.get(Calendar.MONTH)
+        val dayOfMonth = selectedCalendar.get(Calendar.DAY_OF_MONTH)
+        val listener = android.app.DatePickerDialog.OnDateSetListener{ datePicker, Y, M, D ->
+            selectedCalendar.set(Y, M, D)
+            etSchedulDate.setText("$Y, $M, $D")
+        }
+
+        DatePickerDialog(this, listener, year, month, dayOfMonth ).show()
     }
 }
