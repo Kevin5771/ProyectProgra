@@ -56,6 +56,7 @@
                     android:layout_marginTop="12dp"/>
 
                 <Spinner
+                    android:id="@+id/spinner_especialidades"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -127,6 +128,7 @@
 
 
                     <Spinner
+                        android:id="@+id/spinner_medico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
