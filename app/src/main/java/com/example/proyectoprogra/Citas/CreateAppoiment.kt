@@ -1,6 +1,9 @@
 package com.example.proyectoprogra.Citas
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,7 +21,24 @@ class CreateAppoiment : AppCompatActivity() {
             insets
 
 
+
+
         }
 
+
+        val btnNext = findViewById<Button>(R.id.btn_siguiente)
+        val btnConfirm = findViewById<Button>(R.id.btn_Confirmar)
+        val cvNext = findViewById<Button>(R.id.cv_Siguiente)
+        val cvConfirm = findViewById<Button>(R.id.cv_Confirmar)
+
+
+        btnNext.setOnClickListener {
+            cvNext.visibility = View.GONE
+            cvConfirm.visibility = View.VISIBLE
+        }
+        btnConfirm.setOnClickListener{
+            Toast.makeText(applicationContext, "Cita Realizada Exitosamente", Toast.LENGTH_SHORT).show()
+            finish()
+        }
     }
 }
