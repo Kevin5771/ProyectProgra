@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -71,8 +73,25 @@ class CreateAppoiment : AppCompatActivity() {
         val listener = android.app.DatePickerDialog.OnDateSetListener{ datePicker, Y, M, D ->
             selectedCalendar.set(Y, M, D)
             etSchedulDate.setText("$Y, $M, $D")
+            displayRadioButtons()
         }
 
         DatePickerDialog(this, listener, year, month, dayOfMonth ).show()
+    }
+
+    private fun displayRadioButtons(){
+        val radioGroup = findViewById<RadioGroup>(R.id.radio_group)
+        radioGroup.clearCheck()
+        radioGroup.removeAllViews()
+
+
+        val hours = arrayOf(" 8:00 Am", " 8:30 AM", "9:00 AM", "9:30 AM", "10 AM")
+        hours.forEach {
+            val radioButton = RadioButton(this)
+            radioButton.id = View.generateViewId()
+            radioButton.text = it
+            radioGroup.addView(radioButton)
+        }
+
     }
 }
