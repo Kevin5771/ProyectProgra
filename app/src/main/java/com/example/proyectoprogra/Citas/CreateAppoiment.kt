@@ -3,6 +3,7 @@ package com.example.proyectoprogra.Citas
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
+
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -13,6 +14,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.compose.material3.DatePicker
@@ -41,6 +43,7 @@ class CreateAppoiment : AppCompatActivity() {
         val btnNext = findViewById<Button>(R.id.btn_siguiente)
         val btnNext2 = findViewById<Button>(R.id.btn_siguiente_dos)
         val btnConfirm = findViewById<Button>(R.id.btn_Confirmar)
+
         val cvNext = findViewById<CardView>(R.id.cv_Siguiente)
         val cvConfirm = findViewById<CardView>(R.id.cv_Confirmar)
         val cvResumen = findViewById<CardView>(R.id.cv_resumen)
@@ -96,10 +99,6 @@ class CreateAppoiment : AppCompatActivity() {
         tvConfirmDoctorName.text = spinnerDoctor.selectedItem.toString()
         tvConfirmDate.text = etScheduledDate.text.toString()
         tvConfirmTime.text = selectedRadioButton?.text.toString()
-
-
-
-
 
 
     }
@@ -163,6 +162,38 @@ class CreateAppoiment : AppCompatActivity() {
                 radioGroupRight.addView(radioButton)
             goToLeft = !goToLeft
         }
+
+    }
+
+    override fun onBackPressed() {
+
+        val cvNext = findViewById<CardView>(R.id.cv_Siguiente)
+        val cvConfirm = findViewById<CardView>(R.id.cv_Confirmar)
+        val cvResumen = findViewById<CardView>(R.id.cv_resumen)
+
+        if(cvResumen.visibility = View.VISIBLE){
+            cvResumen.visibility = View.GONE
+            cvConfirm.visibility = View.VISIBLE
+        }else if (cvConfirm.visibility = View.VISIBLE){
+            cvConfirm.visibility = View.GONE
+            cvNext.visibility = View.VISIBLE
+        }else if (cvNext.visibility = View.VISIBLE){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Estas seguro que desea salir?")
+            builder.setMessage("Si abandonas el registro, los datos ingresados se perderan")
+            builder.setPositiveButton("Salir"){_, _ ->
+                finish()
+            }
+            builder.setNegativeButton("Continuar"){dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+
+
+
 
     }
 }
