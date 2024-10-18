@@ -252,8 +252,6 @@
                 android:text="muchas pulgas"/>
 
         </LinearLayout>
-
-
                     <Button
                         android:id="@+id/btn_Confirmar"
                         android:layout_width="match_parent"

@@ -35,4 +35,9 @@ class LoginScr : AppCompatActivity() {
         val intent = Intent(this, Resgister::class.java)
         startActivity(intent)
     }
+    // Método para navegar a la pantalla de registro.
+    private fun goToRMenu() {
+        val intent = Intent(this, Menu::class.java)
+        startActivity(intent)
+    }
 }

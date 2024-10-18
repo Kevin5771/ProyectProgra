@@ -1,5 +1,6 @@
 package com.example.proyectoprogra.Citas
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
@@ -165,19 +166,20 @@ class CreateAppoiment : AppCompatActivity() {
 
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
 
         val cvNext = findViewById<CardView>(R.id.cv_Siguiente)
         val cvConfirm = findViewById<CardView>(R.id.cv_Confirmar)
         val cvResumen = findViewById<CardView>(R.id.cv_resumen)
 
-        if(cvResumen.visibility = View.VISIBLE){
+        if(cvResumen.visibility == View.VISIBLE){
             cvResumen.visibility = View.GONE
             cvConfirm.visibility = View.VISIBLE
-        }else if (cvConfirm.visibility = View.VISIBLE){
+        }else if (cvConfirm.visibility == View.VISIBLE){
             cvConfirm.visibility = View.GONE
             cvNext.visibility = View.VISIBLE
-        }else if (cvNext.visibility = View.VISIBLE){
+        }else if (cvNext.visibility == View.VISIBLE){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Estas seguro que desea salir?")
             builder.setMessage("Si abandonas el registro, los datos ingresados se perderan")

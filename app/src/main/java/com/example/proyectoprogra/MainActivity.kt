@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.proyectoprogra.Chat.LoginChat
 import com.example.proyectoprogra.Citas.LoginScr
+import com.example.proyectoprogra.Citas.Menu
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,22 +22,20 @@ class MainActivity : ComponentActivity() {
         val buttonAdoption: Button = findViewById(R.id.buttonAdoption)
 
         // Configurar acciones para los botones
-        buttonSchedule.setOnClickListener { navegarALogin() }
+        buttonSchedule.setOnClickListener { ReservarCitas() }
         buttonChat.setOnClickListener { navegarChat()}
         buttonAdoption.setOnClickListener { mostrarToast("Botón 3 presionado") }
     }
 
     // Función para navegar al Login
-    private fun navegarALogin() {
-        val intent = Intent(this, LoginScr::class.java)
+    private fun ReservarCitas() {
+        val intent = Intent(this, Menu::class.java)
         startActivity(intent)
     }
     private fun navegarChat() {
         val intent = Intent(this, LoginChat::class.java)
         startActivity(intent)
     }
-
-   
     private fun mostrarToast(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
