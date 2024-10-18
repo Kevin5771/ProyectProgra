@@ -10,9 +10,11 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.core.view.ViewCompat
@@ -37,14 +39,21 @@ class CreateAppoiment : AppCompatActivity() {
 
 
         val btnNext = findViewById<Button>(R.id.btn_siguiente)
+        val btnNext2 = findViewById<Button>(R.id.btn_siguiente_dos)
         val btnConfirm = findViewById<Button>(R.id.btn_Confirmar)
-        val cvNext = findViewById<Button>(R.id.cv_Siguiente)
-        val cvConfirm = findViewById<Button>(R.id.cv_Confirmar)
+        val cvNext = findViewById<CardView>(R.id.cv_Siguiente)
+        val cvConfirm = findViewById<CardView>(R.id.cv_Confirmar)
+        val cvResumen = findViewById<CardView>(R.id.cv_resumen)
 
 
         btnNext.setOnClickListener {
             cvNext.visibility = View.GONE
             cvConfirm.visibility = View.VISIBLE
+        }
+        btnNext2.setOnClickListener{
+            showAppointmentDataToConfirm()
+            cvConfirm.visibility = View.GONE
+            cvResumen.visibility = View.VISIBLE
         }
         btnConfirm.setOnClickListener{
             Toast.makeText(applicationContext, "Cita Realizada Exitosamente", Toast.LENGTH_SHORT).show()
@@ -61,6 +70,38 @@ class CreateAppoiment : AppCompatActivity() {
 
         val optionsDoctor = arrayOf("Medico 1", "Medico 2", "Medico 3")
         spinnerDoctor.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, optionsDoctor)
+    }
+
+    private fun showAppointmentDataToConfirm(){
+        val tvConfirmDescription = findViewById<TextView>(R.id.tv_resumen_sintomas)
+        val tvConfirmSpecialty = findViewById<TextView>(R.id.tv_resumen_especialidad)
+        val tvConfirmType = findViewById<TextView>(R.id.tv_resumen_tipoConsulta)
+        val tvConfirmDoctorName = findViewById<TextView>(R.id.tv_resumen_medico)
+        val tvConfirmDate = findViewById<TextView>(R.id.tv_resumen_fecha)
+        val tvConfirmTime = findViewById<TextView>(R.id.tv_resumen_hora)
+
+        val etDescription = findViewById<EditText>(R.id.et_description)
+        val spinnerSpecialties = findViewById<Spinner>(R.id.spinner_especialidades)
+        val radioGroupType = findViewById<RadioGroup>(R.id.radio_group_type)
+        val spinnerDoctor = findViewById<Spinner>(R.id.spinner_medico)
+        val etScheduledDate = findViewById<EditText>(R.id.et_fecha)
+
+        tvConfirmDescription.text = etDescription.text.toString()
+        tvConfirmSpecialty.text = spinnerSpecialties.selectedItem.toString()
+
+        val selectRadioBtnId = radioGroupType.checkedRadioButtonId
+        val selectedRadioType = radioGroupType.findViewById<RadioButton>(selectRadioBtnId)
+        tvConfirmType.text = selectedRadioType.text.toString()
+
+        tvConfirmDoctorName.text = spinnerDoctor.selectedItem.toString()
+        tvConfirmDate.text = etScheduledDate.text.toString()
+        tvConfirmTime.text = selectedRadioButton?.text.toString()
+
+
+
+
+
+
     }
 
     fun onClickScheduleDate(v: View?){
