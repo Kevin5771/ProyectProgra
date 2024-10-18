@@ -12,12 +12,11 @@ import com.example.proyectoprogra.R
 class Menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_menu)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val btnLogout = findViewById<Button>(R.id.btn_logout)
+        btnLogout.setOnClickListener{
+
         }
 
         val btnReservarCita = findViewById<Button>(R.id.btn_reservar_cita)
@@ -26,6 +25,17 @@ class Menu : AppCompatActivity() {
             goToCreateAppoiment()
         }
 
+        val btnMisCitas = findViewById<Button>(R.id.btn_mis_citas)
+        btnMisCitas.setOnClickListener{
+            goToMyAppointments()
+
+        }
+
+    }
+
+    private fun goToMyAppointments(){
+        val intent = Intent(this, AppointmentsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun goToCreateAppoiment(){

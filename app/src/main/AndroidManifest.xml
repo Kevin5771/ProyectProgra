@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProyectoProgra"
         tools:targetApi="31">
         <activity
+            android:name=".Citas.AppointmentsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Chat.RegistroActivity"
             android:exported="false" />
         <activity
