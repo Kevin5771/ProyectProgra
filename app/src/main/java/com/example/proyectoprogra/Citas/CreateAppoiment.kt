@@ -23,6 +23,7 @@ import androidx.compose.material3.DatePickerDialog
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectoprogra.R
+import com.google.android.material.snackbar.Snackbar
 import java.time.Year
 import java.util.Calendar
 
@@ -34,7 +35,7 @@ class CreateAppoiment : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_create_appoiment)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.linearLayout_create_appointment)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -49,15 +50,33 @@ class CreateAppoiment : AppCompatActivity() {
         val cvConfirm = findViewById<CardView>(R.id.cv_Confirmar)
         val cvResumen = findViewById<CardView>(R.id.cv_resumen)
 
+        val etDescription = findViewById<EditText>(R.id.et_description)
+        val etScheduledDate = findViewById<EditText>(R.id.et_fecha)
+
+        val linearLayoutCreateAppoiment = findViewById<LinearLayout>(R.id.linearLayout_create_appointment)
 
         btnNext.setOnClickListener {
-            cvNext.visibility = View.GONE
-            cvConfirm.visibility = View.VISIBLE
+            if(etDescription.text.toString().length < 3){
+                etDescription.error = "La descripcion es demasiada corta"
+            }else {
+                cvNext.visibility = View.GONE
+                cvConfirm.visibility = View.VISIBLE
+            }
+
         }
         btnNext2.setOnClickListener{
-            showAppointmentDataToConfirm()
-            cvConfirm.visibility = View.GONE
-            cvResumen.visibility = View.VISIBLE
+            if(etScheduledDate.text.toString().isEmpty()){
+                etScheduledDate.error = ""
+                Snackbar.make(linearLayoutCreateAppoiment, "Debe escoger una fecha para las citas", Snackbar.LENGTH_SHORT).show()
+            }else if (selectedRadioButton == null){
+                Snackbar.make(linearLayoutCreateAppoiment, "Debe seleccionar una hora para la cita", Snackbar.LENGTH_SHORT).show()
+
+            }else{
+                showAppointmentDataToConfirm()
+                cvConfirm.visibility = View.GONE
+                cvResumen.visibility = View.VISIBLE
+            }
+
         }
         btnConfirm.setOnClickListener{
             Toast.makeText(applicationContext, "Cita Realizada Exitosamente", Toast.LENGTH_SHORT).show()
@@ -116,6 +135,8 @@ class CreateAppoiment : AppCompatActivity() {
                 Y,
                 (M+1).twoDigits(),
                 D.twoDigits()))
+
+            etSchedulDate.error = null
             displayRadioButtons()
         }
 
