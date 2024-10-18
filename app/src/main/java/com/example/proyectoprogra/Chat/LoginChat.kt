@@ -25,7 +25,7 @@ class LoginChat : AppCompatActivity() {
          }
 
          override fun onFinish() {
-            val intent = Intent(applicationContext, LoginScreen::class.java)
+            val intent = Intent(applicationContext, Inicio::class.java)
              startActivity(intent)
              finish()
          }

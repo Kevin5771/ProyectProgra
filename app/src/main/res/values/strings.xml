@@ -5,4 +5,13 @@
     <string name="title_activity_adopcion_screen">AdopcionScreen</string>
     <string name="title_activity_splash">Chat Entusiastas</string>
     <string name="name_desarrollador">VitalPet Salud Animal</string>
+    
+    <string name="Btn_Registro">Registrarme</string>
+    <string name="Btn_Login">Ingresar</string>
+
+    <string name="R_Nombre_User">Nombre</string>
+    <string name="R_Email">Correo Eléctrónico</string>
+    <string name="R_Password">Contraseña</string>
+    <string name="R_r_Password">Repita su Contraseña</string>
+    <string name="R_Btn_Registrar">Registrar</string>
 </resources>
